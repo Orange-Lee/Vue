@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="app">
+		<div>
+			姓名：<input v-model="inputName" />
+		</div>
+		<div>
+			年龄：<input v-model="inputAge" />
+		</div>
+		<div>
+			性别：<input v-model="inputSex" />
+		</div>
+		<button @click="save">保存</button>
+	</div>
+	<script>
+		var vm = new Vue({
+			el:"#app",
+			data: {
+				inputName:"",
+				inputAge:"",
+				inputSex:"",
+			},
+			computed: {
+				inputFull: function(){
+					this.inputName + "" + this.inputAge + "" + this.inputSex
+				}
+			}
+			methods: {
+				save: function(){
+					alert("1")
+				}
+			}
+		})
+	</script>
+</body>
+</html>
