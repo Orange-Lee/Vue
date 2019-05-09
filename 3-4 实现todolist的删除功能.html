@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>组件与实例的关系</title>
 	<script src="./vue.js"></script>
 </head>
+
 <body>
 	<div id="root">
 		<div>
@@ -12,24 +14,19 @@
 			<button @click="handleSubmit">提交</button>
 		</div>
 		<ul>
-			<todo-item 
-			v-for="(item, index) of list" 
-			:key="index" 
-			:content="item" 
-			:index="index"
-			@delete="handleDelete"
-			></todo-item>
+			<todo-item v-for="(item, index) of list" :key="index" :content="item" :index="index" @delete="handleDelete">
+			</todo-item>
 		</ul>
 	</div>
 
 	<script>
 
 		Vue.component('todo-item', {
-			props: ['content','index'],
-			template: '<li @click="handleClick">{{content}} {{index}}</li>',
+			props: ['content', 'index'],
+			template: '<li @click="handleClick">{{content}}</li>',
 			methods: {
-				handleClick: function() {
-					this.$emit('delete', this.index)
+				handleClick: function () {
+					this.$emit('delete', this.index) //$emit 向父组件传递值
 				}
 			}
 		})
@@ -41,15 +38,16 @@
 				list: []
 			},
 			methods: {
-				handleSubmit: function() {
+				handleSubmit: function () {
 					this.list.push(this.inputValue)
 					this.inputValue = ''
-				}
-				handleDelete: function() {
+				},
+				handleDelete: function (index) {
 					this.list.splice(index, 1)
 				}
 			}
 		})
 	</script>
 </body>
+
 </html>
